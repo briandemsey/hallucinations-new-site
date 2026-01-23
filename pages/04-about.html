@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Hallucinations.cloud and Founder Brian Demsey</title>
+    <meta name="description" content="Learn about the mission and leadership behind Hallucinations.cloud, founded by Brian Demsey, an expert in AI reliability.">
+    <meta name="keywords" content="Hallucinations.cloud founder, Brian AI expert, AI verification company">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; color: #1a1a2e; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 100px 0;
+        }
+        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 20px; }
+        .hero .subtitle { font-size: 1.3rem; opacity: 0.9; }
+        .hero-image {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn { display: inline-block; padding: 14px 28px; border-radius: 8px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: transform 0.2s; }
+        .btn-primary { background: #e94560; color: white; }
+        .btn:hover { transform: translateY(-2px); }
+
+        /* Sections */
+        section { padding: 100px 0; }
+        section:nth-child(even) { background: #f8f9fa; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 16px; }
+        .section-header p { font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto; }
+
+        /* Mission Section */
+        .mission-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        .mission-content p { font-size: 1.2rem; color: #444; margin-bottom: 24px; line-height: 1.8; }
+
+        /* Founder Section */
+        .founder-section { background: white; }
+        .founder-content { display: grid; grid-template-columns: 350px 1fr; gap: 60px; align-items: start; }
+        .founder-photo {
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            border-radius: 16px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 40px;
+        }
+        .founder-bio h2 { font-size: 2rem; margin-bottom: 8px; }
+        .founder-bio .title { color: #e94560; font-weight: 600; margin-bottom: 24px; font-size: 1.1rem; }
+        .founder-bio p { color: #444; margin-bottom: 20px; font-size: 1.05rem; line-height: 1.8; }
+        .founder-quote {
+            background: #f8f9fa;
+            border-left: 4px solid #e94560;
+            padding: 24px 32px;
+            margin: 32px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .founder-quote blockquote { font-size: 1.4rem; font-style: italic; color: #1a1a2e; margin-bottom: 8px; }
+        .founder-quote cite { color: #666; font-size: 0.95rem; }
+
+        /* Values Section */
+        .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .value-card {
+            text-align: center;
+            padding: 40px 24px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #e94560, #0f3460);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: white;
+        }
+        .value-card h3 { font-size: 1.2rem; margin-bottom: 12px; }
+        .value-card p { color: #666; font-size: 0.95rem; }
+
+        /* Timeline */
+        .timeline { max-width: 700px; margin: 0 auto; }
+        .timeline-item {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        .timeline-year {
+            min-width: 80px;
+            font-weight: 700;
+            color: #e94560;
+            font-size: 1.1rem;
+        }
+        .timeline-content h3 { font-size: 1.1rem; margin-bottom: 8px; }
+        .timeline-content p { color: #666; }
+
+        @media (max-width: 768px) {
+            .hero-content, .founder-content { grid-template-columns: 1fr; }
+            .values-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 2.2rem; }
+            .founder-photo { position: static; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================
+     HEADER / NAVIGATION
+     ============================================ -->
+<header style="background: #1a1a2e; padding: 16px 0; position: fixed; width: 100%; top: 0; z-index: 1000;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="../index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+            <img src="../assets/h-llm-logo.png" alt="H-LLM Logo" style="height: 40px; width: auto;">
+            <span style="color: white; font-weight: 600; font-size: 1.1rem;">Hallucinations.cloud</span>
+        </a>
+        <nav style="display: flex; gap: 32px;">
+            <a href="../index.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Home</a>
+            <a href="./02-products.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Products</a>
+            <a href="./03-working-model.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Working Model</a>
+            <a href="./04-about.html" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 600;">About</a>
+            <a href="./05-resources.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Resources</a>
+            <a href="./06-insights-ai-in-context.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Insights</a>
+            <a href="./08-contact.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="hero" style="padding-top: 140px;">
+    <div class="container">
+        <div class="hero-content">
+            <div>
+                <h1>Turning AI Hallucinations into Verifiable Truth</h1>
+                <p class="subtitle">Learn about our mission, values, and the people behind Hallucinations.cloud.</p>
+            </div>
+            <div class="hero-image">
+                <!-- IMAGE: Portrait of Brian or conceptual "clarity in data" artwork -->
+                <p style="color: rgba(255,255,255,0.5);">[Hero Image]</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     MISSION SECTION
+     ============================================ -->
+<section class="mission">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Mission</h2>
+        </div>
+        <div class="mission-content">
+            <p>Hallucinations.cloud was founded to solve one of AI's biggest challenges—hallucinations. When AI systems generate false or misleading information presented as fact, the consequences can range from minor inconveniences to critical failures in healthcare, finance, legal, and other high-stakes domains.</p>
+            <p>Our mission is simple: make trust in AI measurable and accessible. We believe that AI can be a powerful force for good, but only when its outputs can be verified, validated, and trusted.</p>
+            <p>By comparing responses across eight leading AI models and applying rigorous verification methodology, we give users the confidence to act on AI-generated insights—or the knowledge to seek human expertise when needed.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     FOUNDER SECTION
+     ============================================ -->
+<section class="founder-section">
+    <div class="container">
+        <div class="founder-content">
+            <div class="founder-photo" style="background: none; padding: 0;">
+                <img src="../assets/brian-headshot.jpg" alt="Brian Demsey, Founder of Hallucinations.cloud" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px; min-height: 400px;">
+            </div>
+            <div class="founder-bio">
+                <h2>Meet Brian Demsey</h2>
+                <p class="title">Founder & CEO, Hallucinations.cloud</p>
+
+                <p>Brian is the founder of Hallucinations.cloud, driven by a singular belief: AI's potential is limited not by capability, but by trustworthiness.</p>
+
+                <p>With a background spanning technology, data analysis, and AI ethics, Brian recognized early that the rapid advancement of large language models was creating a verification gap. As AI became more fluent and confident, distinguishing accurate information from hallucinated content became increasingly difficult—even for experts.</p>
+
+                <p>This realization led to the creation of Hallucinations.cloud: a platform that doesn't just detect when AI gets it wrong, but provides a framework for understanding why, how often, and what to do about it.</p>
+
+                <div class="founder-quote">
+                    <blockquote>"Truth is the only scalable technology."</blockquote>
+                    <cite>— Brian Demsey</cite>
+                </div>
+
+                <p>Brian's approach combines technical rigor with practical accessibility. He believes that AI verification shouldn't be reserved for research labs and enterprise security teams—it should be available to everyone who relies on AI for decisions big and small.</p>
+
+                <p>Through the H-Score system and multi-model comparison engine, Brian and the Hallucinations.cloud team are building the reliability layer that AI has been missing.</p>
+
+                <a href="/insights/llm-real-life" class="btn btn-primary" style="margin-top: 16px;">Read Brian's Insights</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     VALUES SECTION
+     ============================================ -->
+<section class="values">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Core Values</h2>
+            <p>The principles that guide everything we build.</p>
+        </div>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">&#128269;</div>
+                <h3>Transparency</h3>
+                <p>We show our work. Every H-Score comes with the reasoning behind it, so you understand not just what we found, but how.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">&#128203;</div>
+                <h3>Accountability</h3>
+                <p>We hold AI systems accountable for their outputs, and we hold ourselves accountable for the accuracy of our verification.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">&#127919;</div>
+                <h3>Accuracy</h3>
+                <p>Precision matters. We verify against authoritative sources and multiple models to minimize false positives and negatives.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">&#128737;</div>
+                <h3>Integrity</h3>
+                <p>We report what we find, even when the results are inconvenient. Truth doesn't bend to preferences.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     STORY TIMELINE SECTION
+     ============================================ -->
+<section class="story">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Journey</h2>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-content">
+                    <h3>The Problem Emerges</h3>
+                    <p>Brian identifies the growing gap between AI fluency and AI accuracy, documenting hundreds of hallucination cases across leading models.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <h3>H-Score Concept</h3>
+                    <p>Development begins on the H-Score rating system, combining Safety, Trust, Confidence, and Quality into a single actionable metric.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-content">
+                    <h3>Multi-Model Engine</h3>
+                    <p>The H-LLM Multi-Model comparison engine launches, enabling real-time verification across eight leading AI systems.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-content">
+                    <h3>Enterprise Launch</h3>
+                    <p>Hallucinations.cloud opens to enterprise customers, providing API access and white-label solutions for organizations requiring verified AI.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     CTA SECTION
+     ============================================ -->
+<section style="background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%); color: white; text-align: center; padding: 80px 0;">
+    <div class="container">
+        <h2 style="font-size: 2.2rem; margin-bottom: 16px;">Join Our Mission</h2>
+        <p style="opacity: 0.8; margin-bottom: 32px; font-size: 1.1rem;">Help us build a more trustworthy AI ecosystem.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="/app" class="btn btn-primary">Try the App</a>
+            <a href="/contact" class="btn" style="background: transparent; border: 2px solid white; color: white;">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     SEO SCHEMA MARKUP
+     ============================================ -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Hallucinations.cloud",
+    "description": "AI verification platform that makes trust in AI measurable and accessible.",
+    "url": "https://hallucinations.cloud",
+    "founder": {
+        "@type": "Person",
+        "name": "Brian Demsey",
+        "jobTitle": "Founder & CEO",
+        "description": "Expert in AI reliability and verification, founder of Hallucinations.cloud"
+    },
+    "foundingDate": "2024",
+    "knowsAbout": ["Artificial Intelligence", "AI Verification", "LLM Hallucinations", "AI Ethics"]
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Brian Demsey",
+    "jobTitle": "Founder & CEO",
+    "worksFor": {
+        "@type": "Organization",
+        "name": "Hallucinations.cloud"
+    },
+    "description": "Founder of Hallucinations.cloud, expert in AI reliability and verification."
+}
+</script>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer style="background: #0a0a1a; color: white; padding: 60px 0 24px;">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
+            <div>
+                <a href="../index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 16px;">
+                    <img src="../assets/h-llm-logo.png" alt="H-LLM Logo" style="height: 36px; width: auto;">
+                    <span style="color: white; font-weight: 600;">Hallucinations.cloud</span>
+                </a>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7;">The reliability layer for AI that makes trust measurable across every model.</p>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Product</h4>
+                <a href="./02-products.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Products</a>
+                <a href="./03-working-model.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Working Model</a>
+                <a href="./05-resources.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Resources</a>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Company</h4>
+                <a href="./04-about.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">About</a>
+                <a href="./08-contact.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Contact</a>
+                <a href="./06-insights-ai-in-context.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Insights</a>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Connect</h4>
+                <div style="display: flex; gap: 12px;">
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">in</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">X</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">GH</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">YT</a>
+                </div>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center;">
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">&copy; 2026 Hallucinations.cloud. All rights reserved.</p>
+            <div style="display: flex; gap: 24px;">
+                <a href="./privacy.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem;">Privacy Policy</a>
+                <a href="./terms.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem;">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallucinations.cloud | H-LLM Multi-Model and H-Score</title>
+    <meta name="description" content="Learn how Hallucinations.cloud compares eight AI models to verify accuracy, detect hallucinations, and ensure reliability.">
+    <meta name="keywords" content="AI verification, AI hallucination detection, multi-model API, H-Score">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; color: #1a1a2e; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 20px; }
+        .hero .subtitle { font-size: 1.4rem; opacity: 0.9; margin-bottom: 32px; }
+        .btn { display: inline-block; padding: 16px 32px; border-radius: 8px; font-size: 1.1rem; font-weight: 600; text-decoration: none; transition: transform 0.2s; }
+        .btn-primary { background: #e94560; color: white; }
+        .btn:hover { transform: translateY(-2px); }
+
+        /* Sections */
+        section { padding: 100px 0; }
+        section:nth-child(even) { background: #f8f9fa; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 16px; }
+        .section-header p { font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto; }
+
+        /* Feature Cards */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            border-left: 4px solid #e94560;
+        }
+        .feature-card .icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .feature-card h3 { font-size: 1.4rem; margin-bottom: 16px; color: #1a1a2e; }
+        .feature-card p { color: #555; line-height: 1.7; }
+
+        /* H-Score Breakdown */
+        .hscore-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .hscore-item {
+            text-align: center;
+            padding: 32px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .hscore-item .score-letter {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #e94560, #0f3460);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+        .hscore-item h3 { font-size: 1.2rem; margin-bottom: 8px; }
+        .hscore-item p { font-size: 0.95rem; color: #666; }
+
+        /* Enterprise Section */
+        .enterprise-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .enterprise-text h2 { font-size: 2.5rem; margin-bottom: 24px; }
+        .enterprise-text p { font-size: 1.1rem; color: #444; margin-bottom: 24px; }
+        .enterprise-image {
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            border-radius: 16px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Security Features */
+        .security-list { list-style: none; }
+        .security-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 1.1rem;
+        }
+        .security-list li:last-child { border-bottom: none; }
+        .check-icon { color: #28a745; font-size: 1.3rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hscore-grid { grid-template-columns: repeat(2, 1fr); }
+            .enterprise-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================
+     HEADER / NAVIGATION
+     ============================================ -->
+<header style="background: #1a1a2e; padding: 16px 0; position: fixed; width: 100%; top: 0; z-index: 1000;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="../index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+            <img src="../assets/h-llm-logo.png" alt="H-LLM Logo" style="height: 40px; width: auto;">
+            <span style="color: white; font-weight: 600; font-size: 1.1rem;">Hallucinations.cloud</span>
+        </a>
+        <nav style="display: flex; gap: 32px;">
+            <a href="../index.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Home</a>
+            <a href="./02-products.html" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 600;">Products</a>
+            <a href="./03-working-model.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Working Model</a>
+            <a href="./04-about.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">About</a>
+            <a href="./05-resources.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Resources</a>
+            <a href="./06-insights-ai-in-context.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Insights</a>
+            <a href="./08-contact.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="hero" style="padding-top: 140px;">
+    <div class="container">
+        <h1>The Reliability Layer for AI</h1>
+        <p class="subtitle">One platform, eight models, total transparency.</p>
+        <a href="/api" class="btn btn-primary">Try the API</a>
+        <!-- IMAGE: Flow diagram of data going through eight models to create one H-Score -->
+    </div>
+</section>
+
+<!-- ============================================
+     CORE FEATURES SECTION
+     ============================================ -->
+<section class="features">
+    <div class="container">
+        <div class="section-header">
+            <h2>Core Features</h2>
+            <p>Everything you need to verify AI outputs and ensure reliability at scale.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">&#128269;</div>
+                <h3>Multi-Model Comparison</h3>
+                <p>Identify inconsistencies across multiple AI systems. When models disagree, you know to investigate further. Our comparison engine analyzes responses from GPT-4o, Claude, Gemini, Grok, Cohere, DeepSeek, OpenRouter, and Perplexity simultaneously.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">&#127919;</div>
+                <h3>H-Score Rating System</h3>
+                <p>Rate outputs for Safety, Trust, Confidence, and Quality. The H-Score provides a single, actionable metric that tells you how reliable an AI response is, based on cross-model verification and source validation.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">&#9989;</div>
+                <h3>Truth Verification Engine</h3>
+                <p>Validate facts through academic and official sources. Our verification engine cross-references AI claims against trusted databases, academic papers, and authoritative sources to confirm accuracy.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">&#128737;</div>
+                <h3>Red, Blue, and Purple Team Analysis</h3>
+                <p>Apply cybersecurity logic to AI reliability. Red team challenges outputs, blue team defends accuracy, and purple team synthesizes findings—bringing adversarial testing methodology to AI verification.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">&#128274;</div>
+                <h3>Security and Compliance</h3>
+                <p>Built-in moderation, encryption, and verified access. Enterprise-grade security ensures your queries and data remain protected while meeting compliance requirements for regulated industries.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 48px;">
+            <a href="/contact" class="btn btn-primary">Request API Access</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     H-SCORE BREAKDOWN SECTION
+     ============================================ -->
+<section class="hscore-breakdown">
+    <div class="container">
+        <div class="section-header">
+            <h2>Understanding the H-Score</h2>
+            <p>Four dimensions of AI reliability, measured and scored in real time.</p>
+        </div>
+
+        <div class="hscore-grid">
+            <div class="hscore-item">
+                <div class="score-letter">S</div>
+                <h3>Safety</h3>
+                <p>Measures potential for harmful, biased, or inappropriate content in the response.</p>
+            </div>
+
+            <div class="hscore-item">
+                <div class="score-letter">T</div>
+                <h3>Trust</h3>
+                <p>Evaluates consistency across models and alignment with verified sources.</p>
+            </div>
+
+            <div class="hscore-item">
+                <div class="score-letter">C</div>
+                <h3>Confidence</h3>
+                <p>Rates certainty level based on model agreement and source availability.</p>
+            </div>
+
+            <div class="hscore-item">
+                <div class="score-letter">Q</div>
+                <h3>Quality</h3>
+                <p>Assesses completeness, clarity, and usefulness of the response.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     ENTERPRISE TOOLS SECTION
+     ============================================ -->
+<section class="enterprise">
+    <div class="container">
+        <div class="enterprise-content">
+            <div class="enterprise-text">
+                <h2>Designed for Scale</h2>
+                <p>Integrate via API or white-label solution. Access detailed verification reports that give your team the confidence to act on AI-generated insights.</p>
+
+                <ul class="security-list">
+                    <li><span class="check-icon">&#10003;</span> RESTful API with comprehensive documentation</li>
+                    <li><span class="check-icon">&#10003;</span> White-label deployment options</li>
+                    <li><span class="check-icon">&#10003;</span> Custom model selection and weighting</li>
+                    <li><span class="check-icon">&#10003;</span> Batch processing for high-volume verification</li>
+                    <li><span class="check-icon">&#10003;</span> Detailed audit logs and compliance reports</li>
+                    <li><span class="check-icon">&#10003;</span> SSO and role-based access control</li>
+                </ul>
+
+                <a href="/contact" class="btn btn-primary" style="margin-top: 24px;">Book an Enterprise Demo</a>
+            </div>
+
+            <div class="enterprise-image">
+                <!-- IMAGE: Dashboard illustration or analytics interface -->
+                <p style="color: #888;">[Dashboard/Analytics Interface Image]</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     API PREVIEW SECTION
+     ============================================ -->
+<section class="api-preview">
+    <div class="container">
+        <div class="section-header">
+            <h2>Simple, Powerful API</h2>
+            <p>Integrate AI verification into your workflow with just a few lines of code.</p>
+        </div>
+
+        <div style="background: #1a1a2e; border-radius: 12px; padding: 32px; overflow-x: auto;">
+            <pre style="color: #fff; font-family: 'Consolas', monospace; font-size: 0.95rem; line-height: 1.8; margin: 0;">
+<span style="color: #888;">// Verify an AI response</span>
+<span style="color: #e94560;">const</span> response = <span style="color: #e94560;">await</span> hallucinations.verify({
+  query: <span style="color: #98c379;">"What is the capital of France?"</span>,
+  models: [<span style="color: #98c379;">"gpt-4o"</span>, <span style="color: #98c379;">"claude"</span>, <span style="color: #98c379;">"gemini"</span>],
+  options: {
+    verifyFacts: <span style="color: #e94560;">true</span>,
+    includeAnalysis: <span style="color: #e94560;">true</span>
+  }
+});
+
+<span style="color: #888;">// Response includes H-Score and verification details</span>
+console.log(response.hScore);      <span style="color: #888;">// 94</span>
+console.log(response.consensus);   <span style="color: #888;">// "Paris"</span>
+console.log(response.confidence);  <span style="color: #888;">// "high"</span>
+            </pre>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="/api-docs" class="btn btn-primary">View API Documentation</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     SEO SCHEMA MARKUP
+     ============================================ -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Hallucinations.cloud H-LLM Multi-Model",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web, API",
+    "description": "Multi-model AI verification platform that compares eight leading AI models to detect hallucinations and ensure reliability.",
+    "featureList": [
+        "Multi-Model Comparison",
+        "H-Score Rating System",
+        "Truth Verification Engine",
+        "Red, Blue, and Purple Team Analysis",
+        "Enterprise Security and Compliance"
+    ],
+    "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "0",
+        "highPrice": "999",
+        "priceCurrency": "USD"
+    }
+}
+</script>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer style="background: #0a0a1a; color: white; padding: 60px 0 24px;">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
+            <div>
+                <a href="../index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 16px;">
+                    <img src="../assets/h-llm-logo.png" alt="H-LLM Logo" style="height: 36px; width: auto;">
+                    <span style="color: white; font-weight: 600;">Hallucinations.cloud</span>
+                </a>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7;">The reliability layer for AI that makes trust measurable across every model.</p>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Product</h4>
+                <a href="./02-products.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Products</a>
+                <a href="./03-working-model.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Working Model</a>
+                <a href="./05-resources.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Resources</a>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Company</h4>
+                <a href="./04-about.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">About</a>
+                <a href="./08-contact.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Contact</a>
+                <a href="./06-insights-ai-in-context.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Insights</a>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Connect</h4>
+                <div style="display: flex; gap: 12px;">
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">in</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">X</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">GH</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">YT</a>
+                </div>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center;">
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">&copy; 2026 Hallucinations.cloud. All rights reserved.</p>
+            <div style="display: flex; gap: 24px;">
+                <a href="./privacy.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem;">Privacy Policy</a>
+                <a href="./terms.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem;">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

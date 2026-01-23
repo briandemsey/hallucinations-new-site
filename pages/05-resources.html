@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Research and Reports | Hallucinations.cloud</title>
+    <meta name="description" content="Access case studies, reports, and verified research on AI hallucinations and reliability.">
+    <meta name="keywords" content="AI hallucination research, AI reports, AI glossary">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; color: #1a1a2e; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 16px; }
+        .hero .subtitle { font-size: 1.3rem; opacity: 0.9; }
+        .btn { display: inline-block; padding: 14px 28px; border-radius: 8px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: transform 0.2s; }
+        .btn-primary { background: #e94560; color: white; }
+        .btn-secondary { background: transparent; border: 2px solid currentColor; }
+        .btn:hover { transform: translateY(-2px); }
+
+        /* Sections */
+        section { padding: 80px 0; }
+        section:nth-child(even) { background: #f8f9fa; }
+        .section-header { margin-bottom: 40px; }
+        .section-header h2 { font-size: 2rem; margin-bottom: 12px; }
+        .section-header p { font-size: 1.1rem; color: #555; }
+
+        /* Main Layout */
+        .resources-layout { display: grid; grid-template-columns: 1fr 320px; gap: 60px; }
+
+        /* Reports Grid */
+        .reports-grid { display: grid; gap: 24px; }
+        .report-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            display: grid;
+            grid-template-columns: 200px 1fr;
+        }
+        .report-image {
+            background: linear-gradient(135deg, #e94560, #0f3460);
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        .report-content { padding: 24px; }
+        .report-content .tag {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .report-content h3 { font-size: 1.2rem; margin-bottom: 12px; }
+        .report-content p { color: #666; font-size: 0.95rem; margin-bottom: 16px; }
+
+        /* Sidebar */
+        .sidebar { position: sticky; top: 40px; }
+        .sidebar-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .sidebar-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e94560;
+        }
+        .sidebar-link {
+            display: block;
+            padding: 10px 0;
+            color: #444;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            transition: color 0.2s;
+        }
+        .sidebar-link:last-child { border-bottom: none; }
+        .sidebar-link:hover { color: #e94560; }
+
+        /* Case Studies */
+        .case-studies-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .case-study {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .case-study .industry {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 16px;
+        }
+        .case-study h3 { font-size: 1.2rem; margin-bottom: 12px; }
+        .case-study p { color: #666; margin-bottom: 16px; }
+        .case-study .stats { display: flex; gap: 24px; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }
+        .case-study .stat { text-align: center; }
+        .case-study .stat-value { font-size: 1.5rem; font-weight: 700; color: #e94560; }
+        .case-study .stat-label { font-size: 0.8rem; color: #888; }
+
+        /* Glossary */
+        .glossary-list { }
+        .glossary-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .glossary-item:last-child { border-bottom: none; }
+        .glossary-item dt {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+        }
+        .glossary-item dd { color: #555; line-height: 1.7; }
+
+        @media (max-width: 900px) {
+            .resources-layout { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .report-card { grid-template-columns: 1fr; }
+            .report-image { min-height: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================
+     HEADER / NAVIGATION
+     ============================================ -->
+<header style="background: #1a1a2e; padding: 16px 0; position: fixed; width: 100%; top: 0; z-index: 1000;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="../index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+            <img src="../assets/h-llm-logo.png" alt="H-LLM Logo" style="height: 40px; width: auto;">
+            <span style="color: white; font-weight: 600; font-size: 1.1rem;">Hallucinations.cloud</span>
+        </a>
+        <nav style="display: flex; gap: 32px;">
+            <a href="../index.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Home</a>
+            <a href="./02-products.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Products</a>
+            <a href="./03-working-model.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Working Model</a>
+            <a href="./04-about.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">About</a>
+            <a href="./05-resources.html" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 600;">Resources</a>
+            <a href="./06-insights-ai-in-context.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Insights</a>
+            <a href="./08-contact.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="hero" style="padding-top: 140px;">
+    <div class="container">
+        <h1>Learn How to See AI Clearly</h1>
+        <p class="subtitle">Explore reports, research, and verified resources on AI reliability.</p>
+    </div>
+</section>
+
+<!-- ============================================
+     FEATURED REPORTS SECTION
+     ============================================ -->
+<section class="reports">
+    <div class="container">
+        <div class="resources-layout">
+            <div class="main-content">
+                <div class="section-header">
+                    <h2>Featured Reports</h2>
+                    <p>In-depth research on AI hallucinations and verification.</p>
+                </div>
+
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <div class="report-image">&#128202;</div>
+                        <div class="report-content">
+                            <span class="tag">2026 Report</span>
+                            <h3>The State of AI Hallucinations 2026</h3>
+                            <p>A comprehensive analysis of hallucination rates across eight major AI models, with trends, patterns, and recommendations for mitigation.</p>
+                            <a href="#" class="btn btn-primary">Download Report</a>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-image">&#128200;</div>
+                        <div class="report-content">
+                            <span class="tag">White Paper</span>
+                            <h3>H-Score Methodology: Technical Deep Dive</h3>
+                            <p>Detailed documentation of how the H-Score is calculated, including the algorithms, weighting factors, and validation methodology.</p>
+                            <a href="#" class="btn btn-primary">Download Report</a>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-image">&#128203;</div>
+                        <div class="report-content">
+                            <span class="tag">Industry Guide</span>
+                            <h3>AI Verification for Enterprise: A Compliance Guide</h3>
+                            <p>How organizations in regulated industries can implement AI verification to meet compliance requirements and reduce risk.</p>
+                            <a href="#" class="btn btn-primary">Download Report</a>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-image">&#128208;</div>
+                        <div class="report-content">
+                            <span class="tag">Research Paper</span>
+                            <h3>Multi-Model Consensus and Hallucination Detection</h3>
+                            <p>Academic research on using model agreement and disagreement patterns to identify potential hallucinations in AI outputs.</p>
+                            <a href="#" class="btn btn-primary">Download Report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3>Brian's Picks</h3>
+                    <a href="/insights/llm-real-life" class="sidebar-link">What AI Hallucinations Teach Us About Ourselves</a>
+                    <a href="/insights/ai-in-context" class="sidebar-link">The Hidden Cost of Enterprise AI Errors</a>
+                    <a href="/insights/llm-real-life" class="sidebar-link">Why I Built Hallucinations.cloud</a>
+                    <a href="/insights/ai-in-context" class="sidebar-link">Red Teaming Your AI: A Practical Guide</a>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Quick Links</h3>
+                    <a href="#glossary" class="sidebar-link">Glossary of Terms</a>
+                    <a href="#case-studies" class="sidebar-link">Case Studies</a>
+                    <a href="/products" class="sidebar-link">H-Score Documentation</a>
+                    <a href="/api-docs" class="sidebar-link">API Reference</a>
+                </div>
+
+                <div class="sidebar-section" style="background: linear-gradient(135deg, #1a1a2e, #0f3460); color: white;">
+                    <h3 style="color: white; border-color: #e94560;">Stay Updated</h3>
+                    <p style="font-size: 0.95rem; margin-bottom: 16px; opacity: 0.9;">Get the latest research and insights delivered to your inbox.</p>
+                    <a href="/newsletter" class="btn btn-primary" style="width: 100%; text-align: center;">Subscribe</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     CASE STUDIES SECTION
+     ============================================ -->
+<section class="case-studies" id="case-studies">
+    <div class="container">
+        <div class="section-header">
+            <h2>Case Studies</h2>
+            <p>See how organizations use Hallucinations.cloud to verify AI outputs.</p>
+        </div>
+
+        <div class="case-studies-grid">
+            <div class="case-study">
+                <span class="industry">Healthcare</span>
+                <h3>Regional Hospital Network Reduces Clinical AI Errors</h3>
+                <p>How a network of hospitals implemented H-Score verification to validate AI-generated clinical summaries before physician review.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">73%</div>
+                        <div class="stat-label">Error Reduction</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">4.2x</div>
+                        <div class="stat-label">Faster Review</div>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-secondary" style="margin-top: 20px; color: #1a1a2e;">Read Case Study</a>
+            </div>
+
+            <div class="case-study">
+                <span class="industry">Legal</span>
+                <h3>Law Firm Validates AI Legal Research</h3>
+                <p>A mid-size law firm uses multi-model comparison to verify case citations and legal precedents generated by AI research tools.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Errors Caught/Month</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">$340K</div>
+                        <div class="stat-label">Risk Avoided</div>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-secondary" style="margin-top: 20px; color: #1a1a2e;">Read Case Study</a>
+            </div>
+
+            <div class="case-study">
+                <span class="industry">Finance</span>
+                <h3>Investment Firm Verifies AI Market Analysis</h3>
+                <p>How a quantitative investment firm uses H-Score to validate AI-generated market insights before incorporating them into models.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">89%</div>
+                        <div class="stat-label">Confidence Score</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">2.1%</div>
+                        <div class="stat-label">Hallucination Rate</div>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-secondary" style="margin-top: 20px; color: #1a1a2e;">Read Case Study</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     GLOSSARY SECTION
+     ============================================ -->
+<section class="glossary" id="glossary">
+    <div class="container">
+        <div class="section-header">
+            <h2>Glossary of Terms</h2>
+            <p>Key concepts in AI verification and hallucination detection.</p>
+        </div>
+
+        <div style="max-width: 800px;">
+            <dl class="glossary-list">
+                <div class="glossary-item">
+                    <dt>AI Hallucination</dt>
+                    <dd>A phenomenon where an AI model generates information that is false, misleading, or fabricated, presented with the same confidence as accurate information. Hallucinations can range from minor factual errors to completely invented citations, events, or entities.</dd>
+                </div>
+
+                <div class="glossary-item">
+                    <dt>H-Score</dt>
+                    <dd>A proprietary reliability metric developed by Hallucinations.cloud that rates AI outputs across four dimensions: Safety, Trust, Confidence, and Quality. Scores range from 0-100, with higher scores indicating greater reliability.</dd>
+                </div>
+
+                <div class="glossary-item">
+                    <dt>Multi-Model Verification</dt>
+                    <dd>The practice of submitting the same query to multiple AI models and comparing responses to identify inconsistencies, contradictions, and potential hallucinations. Consensus across models increases confidence in accuracy.</dd>
+                </div>
+
+                <div class="glossary-item">
+                    <dt>Truth Verification Engine</dt>
+                    <dd>A system that cross-references AI-generated claims against trusted sources, including academic databases, official records, and authoritative publications to validate factual accuracy.</dd>
+                </div>
+
+                <div class="glossary-item">
+                    <dt>Red Team / Blue Team / Purple Team</dt>
+                    <dd>A methodology borrowed from cybersecurity. Red team attempts to find flaws in AI outputs, blue team defends accuracy and reliability, and purple team synthesizes findings to improve overall verification.</dd>
+                </div>
+
+                <div class="glossary-item">
+                    <dt>Confidence Score</dt>
+                    <dd>A component of the H-Score that measures certainty level based on model agreement, source availability, and the specificity of the claim being verified.</dd>
+                </div>
+
+                <div class="glossary-item">
+                    <dt>Model Consensus</dt>
+                    <dd>When multiple AI models provide substantially similar answers to the same query. High consensus generally indicates higher reliability, though all models can share common training data biases.</dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     SEO SCHEMA MARKUP
+     ============================================ -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "AI Research and Reports | Hallucinations.cloud",
+    "description": "Access case studies, reports, and verified research on AI hallucinations and reliability.",
+    "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+            {
+                "@type": "Report",
+                "name": "The State of AI Hallucinations 2026",
+                "description": "A comprehensive analysis of hallucination rates across eight major AI models."
+            },
+            {
+                "@type": "TechArticle",
+                "name": "H-Score Methodology: Technical Deep Dive",
+                "description": "Detailed documentation of how the H-Score is calculated."
+            }
+        ]
+    }
+}
+</script>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer style="background: #0a0a1a; color: white; padding: 60px 0 24px;">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
+            <div>
+                <a href="../index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 16px;">
+                    <img src="../assets/h-llm-logo.png" alt="H-LLM Logo" style="height: 36px; width: auto;">
+                    <span style="color: white; font-weight: 600;">Hallucinations.cloud</span>
+                </a>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7;">The reliability layer for AI that makes trust measurable across every model.</p>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Product</h4>
+                <a href="./02-products.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Products</a>
+                <a href="./03-working-model.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Working Model</a>
+                <a href="./05-resources.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Resources</a>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Company</h4>
+                <a href="./04-about.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">About</a>
+                <a href="./08-contact.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Contact</a>
+                <a href="./06-insights-ai-in-context.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Insights</a>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Connect</h4>
+                <div style="display: flex; gap: 12px;">
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">in</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">X</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">GH</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">YT</a>
+                </div>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center;">
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">&copy; 2026 Hallucinations.cloud. All rights reserved.</p>
+            <div style="display: flex; gap: 24px;">
+                <a href="./privacy.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem;">Privacy Policy</a>
+                <a href="./terms.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem;">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

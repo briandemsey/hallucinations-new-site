@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test the Working Model | Hallucinations.cloud</title>
+    <meta name="description" content="Compare AI model outputs, detect inconsistencies, and view real-time reliability scores.">
+    <meta name="keywords" content="AI model comparison, AI verification tool, H-Score demo">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; color: #1a1a2e; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
+            color: white;
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 16px; }
+        .hero .subtitle { font-size: 1.3rem; opacity: 0.9; margin-bottom: 24px; }
+        .btn { display: inline-block; padding: 14px 28px; border-radius: 8px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: transform 0.2s; }
+        .btn-primary { background: #e94560; color: white; }
+        .btn-secondary { background: transparent; border: 2px solid white; color: white; }
+        .btn:hover { transform: translateY(-2px); }
+
+        /* Demo Section */
+        .demo-section {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            padding: 0 0 80px;
+        }
+        .demo-container {
+            background: #0a0a1a;
+            border-radius: 20px;
+            padding: 20px;
+            min-height: 600px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 20px;
+        }
+        .demo-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .demo-dot.red { background: #ff5f56; }
+        .demo-dot.yellow { background: #ffbd2e; }
+        .demo-dot.green { background: #27ca40; }
+        .demo-iframe {
+            width: 100%;
+            min-height: 550px;
+            border: none;
+            border-radius: 12px;
+            background: #111;
+        }
+        .demo-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 550px;
+            color: #666;
+            font-size: 1.2rem;
+        }
+        .secure-badge {
+            text-align: center;
+            margin-top: 20px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+        .secure-badge span { color: #27ca40; }
+
+        /* How It Works */
+        section { padding: 80px 0; }
+        section:nth-child(odd) { background: #f8f9fa; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.2rem; margin-bottom: 16px; }
+        .section-header p { font-size: 1.1rem; color: #555; max-width: 600px; margin: 0 auto; }
+
+        /* Steps */
+        .steps-container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .step {
+            text-align: center;
+            max-width: 280px;
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #e94560, #0f3460);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        .step h3 { font-size: 1.2rem; margin-bottom: 12px; }
+        .step p { color: #666; }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            color: white;
+            text-align: center;
+        }
+        .cta-section h2 { font-size: 2rem; margin-bottom: 16px; }
+        .cta-section p { opacity: 0.8; margin-bottom: 32px; }
+        .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .steps-container { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================
+     HEADER / NAVIGATION
+     ============================================ -->
+<header style="background: #1a1a2e; padding: 16px 0; position: fixed; width: 100%; top: 0; z-index: 1000;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="../index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+            <img src="../assets/h-llm-logo.png" alt="H-LLM Logo" style="height: 40px; width: auto;">
+            <span style="color: white; font-weight: 600; font-size: 1.1rem;">Hallucinations.cloud</span>
+        </a>
+        <nav style="display: flex; gap: 32px;">
+            <a href="../index.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Home</a>
+            <a href="./02-products.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Products</a>
+            <a href="./03-working-model.html" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 600;">Working Model</a>
+            <a href="./04-about.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">About</a>
+            <a href="./05-resources.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Resources</a>
+            <a href="./06-insights-ai-in-context.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Insights</a>
+            <a href="./08-contact.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem;">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="hero" style="padding-top: 140px;">
+    <div class="container">
+        <h1>Experience the H-Score in Action</h1>
+        <p class="subtitle">Submit a question and see how eight AI models respond differently.</p>
+    </div>
+</section>
+
+<!-- ============================================
+     INTERACTIVE DEMO SECTION
+     ============================================ -->
+<section class="demo-section">
+    <div class="container">
+        <div class="demo-container">
+            <div class="demo-header">
+                <div class="demo-dot red"></div>
+                <div class="demo-dot yellow"></div>
+                <div class="demo-dot green"></div>
+                <span style="color: #888; margin-left: 12px; font-size: 0.9rem;">H-LLM Multi-Model Verification</span>
+            </div>
+
+            <!-- EMBED: Replace this div with your Streamlit iframe -->
+            <!-- Example: <iframe src="https://your-streamlit-app.streamlit.app" class="demo-iframe"></iframe> -->
+            <div class="demo-placeholder">
+                <div>
+                    <p style="margin-bottom: 16px;">[Streamlit App Embed]</p>
+                    <p style="font-size: 0.9rem; color: #555;">Replace with: &lt;iframe src="YOUR_STREAMLIT_URL" class="demo-iframe"&gt;&lt;/iframe&gt;</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="secure-badge"><span>&#128274;</span> Secure, moderated testing environment</p>
+
+        <div style="text-align: center; margin-top: 32px;">
+            <a href="/signup" class="btn btn-primary">Sign Up to Save Results</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     HOW IT WORKS SECTION
+     ============================================ -->
+<section class="how-it-works">
+    <div class="container">
+        <div class="section-header">
+            <h2>How It Works</h2>
+            <p>Three simple steps to verified AI responses.</p>
+        </div>
+
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Enter Your Question</h3>
+                <p>Type any question or prompt you want to verify. The system accepts queries in multiple languages.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>View Model Responses</h3>
+                <p>See how GPT-4o, Claude, Gemini, Grok, and other models answer your question differently.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Get Your H-Score</h3>
+                <p>Receive a real-time reliability rating showing Safety, Trust, Confidence, and Quality metrics.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 48px;">
+            <a href="/products" class="btn btn-primary">Learn More About H-Score</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     USE CASES SECTION
+     ============================================ -->
+<section class="use-cases">
+    <div class="container">
+        <div class="section-header">
+            <h2>What Can You Verify?</h2>
+            <p>Test the model with any type of query.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+            <div style="background: white; padding: 28px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: #1a1a2e;">Factual Claims</h3>
+                <p style="color: #666; font-size: 0.95rem;">"When was the Eiffel Tower built?" — Verify historical and factual information across models.</p>
+            </div>
+
+            <div style="background: white; padding: 28px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: #1a1a2e;">Technical Questions</h3>
+                <p style="color: #666; font-size: 0.95rem;">"How does photosynthesis work?" — Check consistency in scientific explanations.</p>
+            </div>
+
+            <div style="background: white; padding: 28px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: #1a1a2e;">Current Events</h3>
+                <p style="color: #666; font-size: 0.95rem;">"What are the latest developments in AI regulation?" — See how models handle recent information.</p>
+            </div>
+
+            <div style="background: white; padding: 28px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: #1a1a2e;">Complex Analysis</h3>
+                <p style="color: #666; font-size: 0.95rem;">"Compare renewable energy options." — Evaluate how models handle nuanced, multi-faceted topics.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     CTA SECTION
+     ============================================ -->
+<section class="cta-section">
+    <div class="container">
+        <h2>Ready for Enterprise-Grade Verification?</h2>
+        <p>Save your results, access detailed reports, and integrate with your workflow.</p>
+        <div class="btn-group">
+            <a href="/signup" class="btn btn-primary">Create Free Account</a>
+            <a href="/contact" class="btn btn-secondary">Request Enterprise Demo</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     SEO SCHEMA MARKUP
+     ============================================ -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Hallucinations.cloud Working Model",
+    "description": "Interactive demo for comparing AI model outputs and viewing real-time H-Score reliability ratings.",
+    "applicationCategory": "AI Verification Tool",
+    "operatingSystem": "Web Browser",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+    }
+}
+</script>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer style="background: #0a0a1a; color: white; padding: 60px 0 24px;">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
+            <div>
+                <a href="../index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 16px;">
+                    <img src="../assets/h-llm-logo.png" alt="H-LLM Logo" style="height: 36px; width: auto;">
+                    <span style="color: white; font-weight: 600;">Hallucinations.cloud</span>
+                </a>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7;">The reliability layer for AI that makes trust measurable across every model.</p>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Product</h4>
+                <a href="./02-products.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Products</a>
+                <a href="./03-working-model.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Working Model</a>
+                <a href="./05-resources.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Resources</a>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Company</h4>
+                <a href="./04-about.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">About</a>
+                <a href="./08-contact.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Contact</a>
+                <a href="./06-insights-ai-in-context.html" style="display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px;">Insights</a>
+            </div>
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Connect</h4>
+                <div style="display: flex; gap: 12px;">
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">in</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">X</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">GH</a>
+                    <a href="#" style="width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.85rem;">YT</a>
+                </div>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center;">
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">&copy; 2026 Hallucinations.cloud. All rights reserved.</p>
+            <div style="display: flex; gap: 24px;">
+                <a href="./privacy.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem;">Privacy Policy</a>
+                <a href="./terms.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem;">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
