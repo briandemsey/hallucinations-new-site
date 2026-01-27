@@ -236,13 +236,13 @@
                     var message = document.getElementById('message').value;
 
                     var subject = 'Hallucinations.cloud Inquiry: ' + (inquiry || 'General');
-                    var body = 'Name: ' + name + '%0D%0A' +
-                               'Email: ' + email + '%0D%0A' +
-                               'Organization: ' + (org || 'N/A') + '%0D%0A' +
-                               'Inquiry Type: ' + (inquiry || 'N/A') + '%0D%0A%0D%0A' +
-                               'Message:%0D%0A' + message;
+                    var body = 'Name: ' + name + '\n' +
+                               'Reply To: ' + email + '\n' +
+                               'Organization: ' + (org || 'N/A') + '\n' +
+                               'Inquiry Type: ' + (inquiry || 'N/A') + '\n\n' +
+                               'Message:\n' + message;
 
-                    window.location.href = 'mailto:brian@hallucinations.cloud?subject=' + encodeURIComponent(subject) + '&body=' + body;
+                    window.location.href = 'mailto:brian@hallucinations.cloud?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
                 }
                 </script>
 
