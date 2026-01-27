@@ -186,7 +186,10 @@
             <div class="contact-form">
                 <h2 style="font-size: 1.8rem; margin-bottom: 32px;">Send Us a Message</h2>
 
-                <form id="contact-form" onsubmit="sendEmail(event)" data-copilot="false" data-ms-copilot="ignore" autocomplete="off">
+                <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" data-copilot="false" data-ms-copilot="ignore" autocomplete="off">
+                    <input type="hidden" name="access_key" value="ee4f0681-d354-48b5-a4d7-cac23769497b">
+                    <input type="hidden" name="subject" value="Hallucinations.cloud Contact Form">
+                    <input type="hidden" name="redirect" value="https://hallucinations.cloud/pages/08-contact.html?sent=true">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Full Name *</label>
@@ -227,22 +230,9 @@
                 </form>
 
                 <script>
-                function sendEmail(e) {
-                    e.preventDefault();
-                    var name = document.getElementById('name').value;
-                    var email = document.getElementById('email').value;
-                    var org = document.getElementById('organization').value;
-                    var inquiry = document.getElementById('inquiry-type').value;
-                    var message = document.getElementById('message').value;
-
-                    var subject = 'Hallucinations.cloud Inquiry: ' + (inquiry || 'General');
-                    var body = 'Name: ' + name + '\n' +
-                               'Reply To: ' + email + '\n' +
-                               'Organization: ' + (org || 'N/A') + '\n' +
-                               'Inquiry Type: ' + (inquiry || 'N/A') + '\n\n' +
-                               'Message:\n' + message;
-
-                    window.location.href = 'mailto:brian@hallucinations.cloud?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+                // Show success message if redirected after form submission
+                if (window.location.search.includes('sent=true')) {
+                    document.getElementById('contact-form').innerHTML = '<div style="text-align: center; padding: 40px;"><h3 style="color: #28a745;">Message Sent!</h3><p>Thank you for contacting us. We will respond shortly.</p></div>';
                 }
                 </script>
 
