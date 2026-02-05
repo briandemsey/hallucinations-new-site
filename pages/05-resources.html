@@ -12,8 +12,8 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
         /* Hero */
-        .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+        section.hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%) !important;
             color: white;
             padding: 100px 0;
             text-align: center;
@@ -138,6 +138,29 @@
             .report-card { grid-template-columns: 1fr; }
             .report-image { min-height: 120px; }
         }
+
+        @media (max-width: 768px) {
+            /* Mobile Navigation */
+            header .container { flex-wrap: wrap; }
+            header nav {
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 12px 20px;
+                margin-top: 12px;
+                justify-content: center;
+            }
+
+            .hero h1 { font-size: 2rem; }
+
+            /* Mobile Footer */
+            footer .container > div:first-child { grid-template-columns: 1fr; gap: 32px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.6rem; }
+            header nav { gap: 8px 16px; }
+            header nav a { font-size: 0.85rem; }
+        }
     </style>
 </head>
 <body>
@@ -166,7 +189,7 @@
 <!-- ============================================
      HERO SECTION
      ============================================ -->
-<section class="hero" style="padding-top: 40px;">
+<section class="hero" style="padding-top: 140px;">
     <div class="container">
         <h1>Learn How to See AI Clearly</h1>
         <p class="subtitle">Explore reports, research, and verified resources on AI reliability.</p>
