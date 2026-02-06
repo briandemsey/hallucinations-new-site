@@ -17,6 +17,7 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%) !important;
             color: white;
             padding: 100px 0;
+            padding-top: 200px;
             text-align: center;
         }
         .hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 16px; }
@@ -141,6 +142,9 @@
         }
 
         @media (max-width: 768px) {
+            /* Mobile Hero - more padding for wrapped nav */
+            .hero { padding-top: 200px !important; }
+
             /* Mobile Navigation */
             header .container { flex-wrap: wrap; }
             header nav {
@@ -190,7 +194,7 @@
 <!-- ============================================
      HERO SECTION
      ============================================ -->
-<section class="hero" style="padding-top: 140px;">
+<section class="hero">
     <div class="container">
         <h1>Learn How to See AI Clearly</h1>
         <p class="subtitle">Explore reports, research, and verified resources on AI reliability.</p>

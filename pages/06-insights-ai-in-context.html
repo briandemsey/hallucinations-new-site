@@ -17,6 +17,7 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
             color: white;
             padding: 80px 0;
+            padding-top: 140px;
             text-align: center;
         }
         .hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 12px; }
@@ -157,6 +158,9 @@
         }
 
         @media (max-width: 768px) {
+            /* Mobile Hero - more padding for wrapped nav */
+            .hero { padding-top: 200px !important; }
+
             /* Mobile Navigation */
             header .container { flex-wrap: wrap; }
             header nav {
@@ -206,7 +210,7 @@
 <!-- ============================================
      HERO SECTION
      ============================================ -->
-<section class="hero" style="padding-top: 140px;">
+<section class="hero">
     <div class="container">
         <h1>AI in Context</h1>
         <p class="subtitle">Research, insights, and updates shaping the future of reliable AI.</p>

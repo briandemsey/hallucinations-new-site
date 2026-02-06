@@ -17,6 +17,7 @@
             background: #1a1a2e;
             color: white;
             padding: 100px 0;
+            padding-top: 140px;
             text-align: center;
         }
         .hero h1 {
@@ -206,6 +207,9 @@
         }
 
         @media (max-width: 768px) {
+            /* Mobile Hero - more padding for wrapped nav */
+            .hero { padding-top: 200px !important; }
+
             /* Mobile Navigation */
             header .container { flex-wrap: wrap; }
             header nav {
@@ -253,7 +257,7 @@
 <!-- ============================================
      HERO SECTION
      ============================================ -->
-<section class="hero" style="padding-top: 140px;">
+<section class="hero">
     <div class="container">
         <h1>LLM Real Life</h1>
         <p class="subtitle">Essays, reflections, and stories about AI and the human side of truth.</p>
