@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Report — Hallucinations.cloud | H-LLM Multi-Model Verification</title>
+<meta name="description" content="See how 8 AI models respond to the same question. Sample report from the H-LLM Multi-Model Verification platform by Hallucinations.cloud.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-body: #0b1120;
+  --bg-app: #0f172a;
+  --bg-card: #1a2236;
+  --bg-card-hover: #1e2840;
+  --bg-input: #1e293b;
+  --border: #1e293b;
+  --border-light: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --accent-red: #ef4444;
+  --accent-orange: #f97316;
+  --accent-amber: #f59e0b;
+  --accent-yellow: #eab308;
+  --accent-green: #22c55e;
+  --accent-cyan: #06b6d4;
+  --accent-blue: #3b82f6;
+  --accent-purple: #a855f7;
+  --gradient-rainbow: linear-gradient(90deg, #ef4444, #f97316, #eab308, #22c55e, #06b6d4, #3b82f6, #a855f7);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-body);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══ WATERMARK ═══ */
+.watermark-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+.watermark-overlay::before {
+  content: 'SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  SAMPLE REPORT  ·  HALLUCINATIONS.CLOUD  ·  ';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 250%; height: 250%;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: rgba(255, 255, 255, 0.035);
+  transform: rotate(-30deg);
+  line-height: 90px;
+  word-spacing: 30px;
+  white-space: pre-wrap;
+  user-select: none;
+}
+
+/* ═══ SAMPLE BANNER ═══ */
+.sample-banner {
+  position: sticky;
+  top: 0;
+  z-index: 9998;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-bottom: 1px solid var(--border-light);
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  backdrop-filter: blur(16px);
+}
+.banner-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.sample-badge {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: var(--accent-amber);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+.banner-text {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+.banner-text strong { color: var(--text-primary); }
+.banner-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+.btn-ghost {
+  background: rgba(255,255,255,0.07);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.12); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  color: #fff;
+}
+.btn-primary:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(99,102,241,0.35);
+}
+
+/* ═══ SITE HEADER ═══ */
+.site-header {
+  background: linear-gradient(180deg, #0f172a, #0b1120);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo-circle {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a365d, #2d3748);
+  border: 2px solid #4a5568;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+  color: #e2e8f0;
+}
+.logo-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.site-nav {
+  display: flex;
+  gap: 28px;
+}
+.site-nav a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.site-nav a:hover { color: var(--text-primary); }
+.site-nav a.active { color: var(--text-primary); font-weight: 700; }
+
+/* ═══ HERO ═══ */
+.hero {
+  text-align: center;
+  padding: 52px 24px 36px;
+  background: linear-gradient(180deg, #0f172a, #131b2e, #0b1120);
+}
+.hero h1 {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.hero p {
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+/* ═══ APP FRAME ═══ */
+.app-frame {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.app-window {
+  background: var(--bg-app);
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.app-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: rgba(0,0,0,0.2);
+  border-bottom: 1px solid var(--border);
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #eab308; }
+.dot-green { background: #22c55e; }
+.app-titlebar-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+.rainbow-bar {
+  height: 3px;
+  background: var(--gradient-rainbow);
+}
+.app-content {
+  padding: 28px 32px 36px;
+}
+
+/* ═══ QUERY ═══ */
+.step-label {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.step-number { color: var(--accent-cyan); }
+.query-display {
+  background: var(--bg-input);
+  border: 2px solid var(--accent-red);
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 15px;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+.submit-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-red);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #166534;
+  color: #4ade80;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+.web-search-badge {
+  background: #14532d;
+  border: 1px solid #166534;
+  color: #86efac;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ═══ CUT TO THE CHASE ═══ */
+.cut-chase {
+  border: 2px solid var(--accent-amber);
+  border-radius: 14px;
+  padding: 32px 28px;
+  text-align: center;
+  margin-bottom: 36px;
+  background: linear-gradient(135deg, rgba(234,179,8,0.04), rgba(249,115,22,0.03));
+}
+.cut-chase-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent-orange);
+  margin-bottom: 18px;
+}
+.cut-chase-quote {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 0 auto 24px;
+}
+.rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.rating-circle {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--accent-yellow);
+  flex-shrink: 0;
+}
+.rating-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.rating-label { font-size: 12px; color: var(--text-muted); }
+.confidence-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.confidence-sublabel { font-size: 12px; color: var(--text-muted); }
+.scroll-hint { font-size: 13px; color: var(--text-muted); }
+
+/* ═══ SECTION HEADING ═══ */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.section-emoji { font-size: 26px; }
+
+/* ═══ MODEL ACCORDION ═══ */
+.model-accordion {
+  margin-bottom: 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.model-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.model-header:hover { background: var(--bg-card-hover); }
+.model-name { font-size: 15px; font-weight: 600; }
+.chevron {
+  font-size: 18px;
+  color: var(--text-muted);
+  transition: transform 0.25s ease;
+}
+.model-accordion.open .chevron { transform: rotate(180deg); }
+.model-body {
+  display: none;
+  padding: 0 20px 20px;
+  background: var(--bg-app);
+}
+.model-accordion.open .model-body { display: block; }
+.model-response-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  padding-top: 16px;
+}
+.model-response-text {
+  background: var(--bg-input);
+  border-radius: 8px;
+  padding: 16px 18px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-height: 240px;
+  overflow-y: auto;
+}
+.model-response-text::-webkit-scrollbar { width: 5px; }
+.model-response-text::-webkit-scrollbar-track { background: transparent; }
+.model-response-text::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+
+/* ═══ CONTRADICTION ANALYSIS ═══ */
+.contradiction-section {
+  background: linear-gradient(135deg, rgba(34,197,94,0.04), rgba(6,182,212,0.03));
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 14px;
+  padding: 28px;
+  margin-bottom: 36px;
+}
+.analysis-list {
+  list-style: none;
+  padding-left: 0;
+}
+.analysis-list > li { margin-bottom: 18px; }
+.analysis-list > li > strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.analysis-sublist {
+  list-style: none;
+  padding-left: 18px;
+}
+.analysis-sublist li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.analysis-sublist li::before {
+  content: '◦';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+/* ═══ SECURITY ANALYSIS ═══ */
+.team-headers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.team-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 800;
+}
+.team-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.team-dot-red { background: var(--accent-red); }
+.team-dot-blue { background: var(--accent-blue); }
+.team-dot-purple { background: var(--accent-purple); }
+.team-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.team-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.team-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+}
+.team-card-header:hover { background: var(--bg-card-hover); }
+.team-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.team-badge-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.team-card-body {
+  display: none;
+  padding: 0 18px 18px;
+}
+.team-card.open .team-card-body { display: block; }
+.team-card.open .chevron { transform: rotate(180deg); }
+.team-score-line {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  padding-top: 4px;
+}
+.team-score-line strong { color: var(--text-primary); }
+.team-section-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.team-detail-list {
+  list-style: none;
+  padding-left: 0;
+}
+.team-detail-list li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 10px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.team-detail-list li::before {
+  content: '◦';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+.team-detail-list li strong { color: var(--text-primary); }
+
+/* ═══ ENHANCED H-SCORE ═══ */
+.hscore-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.hscore-metric {
+  text-align: center;
+  padding: 18px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.hscore-metric-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.hscore-metric-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hscore-metric-change {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-green);
+}
+.hscore-verdict-bar {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  color: var(--text-secondary);
+}
+.info-icon {
+  background: var(--accent-blue);
+  color: #fff;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.verdict-good { color: var(--accent-green); font-weight: 700; }
+
+/* ═══ CONTINUE CONVERSATION ═══ */
+.followup-box {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 14px;
+}
+.followup-input-wrap { flex: 1; }
+.followup-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.followup-input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.followup-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.prev-query {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.collapsed-section {
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.collapsed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--bg-card);
+}
+.collapsed-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.history-scores {
+  display: flex;
+  gap: 16px;
+  padding: 10px 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.history-score-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.score-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+
+/* ═══ CTA FOOTER ═══ */
+.cta-footer {
+  background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(168,85,247,0.06), rgba(6,182,212,0.04));
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 52px 36px;
+  text-align: center;
+  margin: 48px auto 60px;
+  max-width: 860px;
+}
+.cta-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin-bottom: 12px;
+}
+.cta-title {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+.cta-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn-cta-primary {
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-cta-primary:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(99,102,241,0.3);
+}
+.btn-cta-secondary {
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  background: rgba(255,255,255,0.06);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-cta-secondary:hover { background: rgba(255,255,255,0.1); }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .site-nav { display: none; }
+  .hero h1 { font-size: 26px; }
+  .app-content { padding: 20px 16px 28px; }
+  .team-headers, .team-cards { grid-template-columns: 1fr; }
+  .hscore-grid { grid-template-columns: repeat(3, 1fr); }
+  .sample-banner { flex-direction: column; text-align: center; }
+  .banner-left { justify-content: center; flex-wrap: wrap; }
+  .followup-box { flex-direction: column; }
+}
+@media (max-width: 480px) {
+  .hscore-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="watermark-overlay"></div>
+
+<!-- SAMPLE BANNER -->
+<div class="sample-banner">
+  <div class="banner-left">
+    <span class="sample-badge">Sample Report</span>
+    <span class="banner-text"><strong>You're viewing a live sample.</strong> Sign up to run your own queries across 8 AI models.</span>
+  </div>
+  <div class="banner-actions">
+    <a href="https://hallucinations.cloud" class="btn btn-ghost">← Back to Home</a>
+    <a href="https://hallucinations.cloud/#signup" class="btn btn-primary">Sign Up Free</a>
+  </div>
+</div>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <a href="https://hallucinations.cloud" class="site-logo">
+    <div class="logo-circle">H</div>
+    <span class="logo-name">Hallucinations.cloud</span>
+  </a>
+  <nav class="site-nav">
+    <a href="https://hallucinations.cloud">Home</a>
+    <a href="#">Products</a>
+    <a href="#" class="active">Working Model</a>
+    <a href="#">About</a>
+    <a href="#">Blogs</a>
+    <a href="#">Insights</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Experience the H-Score in Action</h1>
+  <p>Submit a question and see how eight AI models respond differently.</p>
+</section>
+
+<!-- APP FRAME -->
+<div class="app-frame">
+  <div class="app-window">
+    <div class="app-titlebar">
+      <span class="dot dot-red"></span>
+      <span class="dot dot-yellow"></span>
+      <span class="dot dot-green"></span>
+      <span class="app-titlebar-text">H-LLM Multi-Model Verification</span>
+    </div>
+    <div class="rainbow-bar"></div>
+
+    <div class="app-content">
+
+      <div class="verified-badge">✓ Verified</div>
+
+      <!-- QUERY -->
+      <div style="margin-bottom:28px;">
+        <div class="step-label"><span class="step-number">4.</span> Enter your query</div>
+        <div class="query-display">What are the global hotspots of the past 90 days.</div>
+        <div class="submit-badge">🚀 Submit</div>
+      </div>
+
+      <div class="web-search-badge">✅ Web search results were added to query</div>
+
+      <!-- CUT TO THE CHASE -->
+      <div class="cut-chase">
+        <div class="cut-chase-title">✂️ Cut to the Chase</div>
+        <div class="cut-chase-quote">
+          "Recent global hotspots include the African Sahel, parts of South America, Cape Town, and Chengdu, primarily due to climate impacts, but specific data for the past 90 days is limited."
+        </div>
+        <div class="rating-row">
+          <div class="rating-circle"></div>
+          <div>
+            <div class="rating-number">6.5/10</div>
+            <div class="rating-label">Rating</div>
+          </div>
+          <div style="margin-left: 12px;">
+            <div class="confidence-text">Medium</div>
+            <div class="confidence-sublabel">Confidence</div>
+          </div>
+        </div>
+        <div class="scroll-hint">⬇️ Scroll down for detailed analysis from 8 AI models ⬇️</div>
+      </div>
+
+      <!-- MODEL RESPONSES -->
+      <div class="section-heading"><span class="section-emoji">🤖</span> Model Responses</div>
+
+      <div class="model-accordion open" onclick="this.classList.toggle('open')">
+        <div class="model-header">
+          <span class="model-name">OpenAI</span>
+          <span class="chevron">⌄</span>
+        </div>
+        <div class="model-body">
+          <div class="model-response-label">OpenAI response:</div>
+          <div class="model-response-text">
+            Recent global hotspots over the past 90 days include:<br><br>
+            1. <strong>The African Sahel:</strong> This region continues to be a significant hotspot due to the climate-conflict nexus, experiencing severe climate impacts such as extreme weather and biodiversity loss.<br><br>
+            2. <strong>Cape Town, South Africa:</strong> Ongoing water and climate challenges have kept Cape Town in focus as a major environmental hotspot.<br><br>
+            3. <strong>Chengdu, China:</strong> Severe air quality and environmental concerns have made Chengdu a notable hotspot in recent months.<br><br>
+            4. <strong>Parts of South America:</strong> Regions including the Amazon basin continue to experience deforestation, biodiversity loss, and climate-related extreme weather events.
+          </div>
+        </div>
+      </div>
+
+      <div class="model-accordion open" onclick="this.classList.toggle('open')">
+        <div class="model-header">
+          <span class="model-name">Claude</span>
+          <span class="chevron">⌄</span>
+        </div>
+        <div class="model-body">
+          <div class="model-response-label">Claude response:</div>
+          <div class="model-response-text">
+            Based on the search results, here are the notable global hotspots in recent months:<br><br>
+            <strong>Climate and Environmental Hotspots:</strong><br><br>
+            • The African Sahel — a major climate-security hotspot with extreme weather, biodiversity loss, and conflict vulnerabilities<br>
+            • Cape Town, South Africa — facing severe water stress and climate adaptation challenges<br>
+            • Chengdu, China — dealing with significant air quality and urban environmental issues<br>
+            • Auckland, New Zealand — climate impacts from extreme weather events<br>
+            • Bogotá, Colombia — urban environmental and air quality concerns<br>
+            • Brasília, Brazil — deforestation-adjacent environmental pressures<br>
+            • Antananarivo, Madagascar — biodiversity loss and deforestation hotspot
+          </div>
+        </div>
+      </div>
+
+      <div class="model-accordion" onclick="this.classList.toggle('open')">
+        <div class="model-header">
+          <span class="model-name">Gemini</span>
+          <span class="chevron">⌄</span>
+        </div>
+        <div class="model-body">
+          <div class="model-response-label">Gemini response:</div>
+          <div class="model-response-text">
+            Key global hotspots in the last 90 days span climate, environmental, and geopolitical domains. The African Sahel remains the most significant climate-security nexus, with extreme weather and biodiversity loss compounding existing vulnerabilities. Cape Town and Chengdu continue to face acute environmental pressures. Oceanic hotspots, including the Indian and Pacific Oceans, have seen elevated sea surface temperatures. Parts of South America are experiencing deforestation and biodiversity decline.
+          </div>
+        </div>
+      </div>
+
+      <div class="model-accordion" onclick="this.classList.toggle('open')">
+        <div class="model-header">
+          <span class="model-name">Cohere</span>
+          <span class="chevron">⌄</span>
+        </div>
+        <div class="model-body">
+          <div class="model-response-label">Cohere response:</div>
+          <div class="model-response-text">
+            In the past 90 days, several global hotspots have drawn attention. The African Sahel continues to be a climate-conflict nexus. Cape Town, South Africa and Chengdu, China remain notable environmental hotspots. Various oceanic regions, particularly in the Indian and Pacific Oceans, have registered elevated temperatures. Parts of South America face ongoing deforestation and climate challenges.
+          </div>
+        </div>
+      </div>
+
+      <div class="model-accordion" onclick="this.classList.toggle('open')">
+        <div class="model-header">
+          <span class="model-name">Deepseek</span>
+          <span class="chevron">⌄</span>
+        </div>
+        <div class="model-body">
+          <div class="model-response-label">Deepseek response:</div>
+          <div class="model-response-text">
+            Global hotspots over the past 90 days include the African Sahel (climate-conflict nexus), Cape Town and Chengdu (environmental challenges), South American regions facing deforestation, and several oceanic areas with elevated sea surface temperatures. Additional cities mentioned include Antananarivo, Auckland, and Bogotá as emerging climate-risk areas.
+          </div>
+        </div>
+      </div>
+
+      <div class="model-accordion" onclick="this.classList.toggle('open')">
+        <div class="model-header">
+          <span class="model-name">OpenRouter</span>
+          <span class="chevron">⌄</span>
+        </div>
+        <div class="model-body">
+          <div class="model-response-label">OpenRouter response:</div>
+          <div class="model-response-text">
+            Recent global hotspots include the African Sahel as a key climate-security concern, Cape Town and Chengdu for environmental pressures, oceanic warming hotspots in the Indian and Pacific basins, and ongoing deforestation concerns across South America including the Amazon basin region.
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTRADICTION ANALYSIS -->
+      <div class="contradiction-section" style="margin-top:36px;">
+        <div class="section-heading"><span class="section-emoji">⚖️</span> Contradiction Analysis</div>
+        <ol class="analysis-list">
+          <li>
+            <strong>1. Key Points of Agreement:</strong>
+            <ul class="analysis-sublist">
+              <li>All models identify the African Sahel as a significant climate-security hotspot due to severe climate impacts and existing vulnerabilities.</li>
+              <li>Cape Town, South Africa, and Chengdu, China, are consistently mentioned as cities facing severe climate impacts and environmental challenges.</li>
+              <li>There is a general consensus on parts of South America being climate hotspots, with specific mentions of biodiversity loss and climate impacts.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>2. Notable Differences or Contradictions:</strong>
+            <ul class="analysis-sublist">
+              <li>While most models mention oceanic hotspots, the specific oceans and details vary slightly. For instance, OpenAI doesn't explicitly mention oceanic hotspots, whereas other models do.</li>
+              <li>Some models, like Claude and Deepseek, list additional cities such as Antananarivo, Auckland, Bogotá, and Brasília, while others focus mainly on Cape Town and Chengdu.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>3. Variations in Perspective or Emphasis:</strong>
+            <ul class="analysis-sublist">
+              <li>Claude provides the most granular city-level detail, while other models tend toward regional-level analysis.</li>
+              <li>Gemini and Cohere emphasize oceanic temperature hotspots more prominently than OpenAI.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <!-- SECURITY ANALYSIS -->
+      <div style="margin-bottom:36px;">
+        <div class="section-heading"><span class="section-emoji">🔍</span> Security Analysis</div>
+        <div class="team-headers">
+          <div class="team-heading"><span class="team-dot team-dot-red"></span> Red Team Analysis</div>
+          <div class="team-heading"><span class="team-dot team-dot-blue"></span> Blue Team Analysis</div>
+          <div class="team-heading"><span class="team-dot team-dot-purple"></span> Purple Team Analysis</div>
+        </div>
+        <div class="team-cards">
+          <div class="team-card open">
+            <div class="team-card-header" onclick="this.parentElement.classList.toggle('open')">
+              <span class="team-badge"><span class="team-badge-dot" style="background:var(--accent-red)"></span> Red Team Report</span>
+              <span class="chevron">⌄</span>
+            </div>
+            <div class="team-card-body">
+              <div class="team-score-line">Risk Score: <strong>5/10</strong></div>
+              <div class="team-section-title">Key Concerns Found</div>
+              <ol class="team-detail-list">
+                <li><strong>Hallucinations:</strong> Several AI responses mention specific cities and regions as "hotspots" without providing verifiable or specific data sources for these claims. For example, the mention of cities like Auckland, New Zealand, and Bogotá, Colombia as climate hotspots lacks specific recent data to support these claims within the 90-day window.</li>
+                <li><strong>Vagueness:</strong> The responses generally lack precision about the time frame, with most providing broad climate information rather than events specifically within the past 90 days.</li>
+              </ol>
+            </div>
+          </div>
+          <div class="team-card open">
+            <div class="team-card-header" onclick="this.parentElement.classList.toggle('open')">
+              <span class="team-badge"><span class="team-badge-dot" style="background:var(--accent-blue)"></span> Blue Team Report</span>
+              <span class="chevron">⌄</span>
+            </div>
+            <div class="team-card-body">
+              <div class="team-score-line">Trust Score: <strong>6/10</strong></div>
+              <div class="team-section-title">Detailed Analysis:</div>
+              <ol class="team-detail-list">
+                <li><strong>Reliability:</strong> The responses generally identify regions and cities known for climate-related challenges, which aligns with broader climate science literature. However, the lack of specific data or recent events within the past 90 days limits the verifiability of these claims.</li>
+                <li><strong>Consistency:</strong> There is strong inter-model agreement on major hotspots (African Sahel, Cape Town, Chengdu), which increases trust in these findings.</li>
+              </ol>
+            </div>
+          </div>
+          <div class="team-card open">
+            <div class="team-card-header" onclick="this.parentElement.classList.toggle('open')">
+              <span class="team-badge"><span class="team-badge-dot" style="background:var(--accent-purple)"></span> Purple Team Report</span>
+              <span class="chevron">⌄</span>
+            </div>
+            <div class="team-card-body">
+              <div class="team-score-line">Confidence Score: <strong>6/10</strong></div>
+              <div class="team-section-title">Strategic Synthesis</div>
+              <ol class="team-detail-list">
+                <li><strong>Overall Assessment:</strong> The responses provide a general understanding of climate hotspots but lack specific, recent data to verify claims. The balance leans slightly towards reliability due to the identification of well-known climate-vulnerable regions.</li>
+                <li><strong>Recommendation:</strong> Users should cross-reference with recent scientific publications or news sources for events specifically within the 90-day window.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENHANCED H-SCORE -->
+      <div style="margin-bottom:36px;">
+        <div class="section-heading"><span class="section-emoji">🏆</span> Enhanced H-Score Analysis</div>
+        <div class="hscore-grid">
+          <div class="hscore-metric">
+            <div class="hscore-metric-label">🛡️ Safety</div>
+            <div class="hscore-metric-value">6.0/10</div>
+            <div class="hscore-metric-change">↑ 1.0</div>
+          </div>
+          <div class="hscore-metric">
+            <div class="hscore-metric-label">📦 Trust</div>
+            <div class="hscore-metric-value">6.0/10</div>
+            <div class="hscore-metric-change">↑ 1.0</div>
+          </div>
+          <div class="hscore-metric">
+            <div class="hscore-metric-label">💪 Confide…</div>
+            <div class="hscore-metric-value">6.0/10</div>
+            <div class="hscore-metric-change">↑ 1.0</div>
+          </div>
+          <div class="hscore-metric">
+            <div class="hscore-metric-label">✅ Quality</div>
+            <div class="hscore-metric-value" style="font-size:22px;">10.0…/10</div>
+            <div class="hscore-metric-change">↑ 5.0</div>
+          </div>
+          <div class="hscore-metric" style="border-color: rgba(239,68,68,0.3);">
+            <div class="hscore-metric-label">🎯 H-Score</div>
+            <div class="hscore-metric-value" style="color:var(--accent-green);">7.0/10</div>
+            <div class="hscore-metric-change">↑ 2.0</div>
+          </div>
+        </div>
+        <div class="hscore-verdict-bar">
+          <span class="info-icon">i</span>
+          <span><span class="verdict-good">Good</span> - Responses are generally trustworthy with minor concerns</span>
+        </div>
+      </div>
+
+      <!-- CONTINUE CONVERSATION -->
+      <div style="margin-bottom:20px;">
+        <div class="section-heading"><span class="section-emoji">💬</span> Continue the Conversation</div>
+        <div class="followup-box">
+          <div class="followup-input-wrap">
+            <div class="followup-label">Ask a follow-up question: ⓘ</div>
+            <input type="text" class="followup-input" placeholder="Build on the previous responses..." disabled>
+          </div>
+          <div class="followup-btn">🌐 Ask Follow-up</div>
+        </div>
+        <div class="prev-query">Previous query: What are the global hotspots of the past 90 days....</div>
+
+        <div class="collapsed-section">
+          <div class="collapsed-header">
+            <span class="collapsed-title">🛡️ AI Content Policy</span>
+            <span class="chevron">⌄</span>
+          </div>
+        </div>
+        <div class="collapsed-section">
+          <div class="collapsed-header">
+            <span class="collapsed-title">📚 Enhanced Query History</span>
+            <span class="chevron">⌄</span>
+          </div>
+        </div>
+        <div class="history-scores">
+          <span class="history-score-item"><span class="score-dot" style="background:var(--accent-red)"></span> Risk: 5.0/10</span>
+          <span class="history-score-item"><span class="score-dot" style="background:var(--text-muted)"></span> Trust: 6.0/10</span>
+          <span class="history-score-item"><span class="score-dot" style="background:var(--accent-purple)"></span> Confidence: 6.0/10</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CTA FOOTER -->
+<div style="padding: 0 20px;">
+  <div class="cta-footer">
+    <div class="cta-eyebrow">Ready to Verify?</div>
+    <div class="cta-title">Run Your Own Queries Across 8 AI Models</div>
+    <div class="cta-desc">Get your own H-Score reliability ratings, Red/Blue/Purple team security analysis, and cross-model contradiction detection.</div>
+    <div class="cta-buttons">
+      <a href="https://hallucinations.cloud/#signup" class="btn-cta-primary">Sign Up — Start Free Trial</a>
+      <a href="https://hallucinations.cloud" class="btn-cta-secondary">← Back to Home</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
